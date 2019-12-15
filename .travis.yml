@@ -20,7 +20,7 @@ script:
 after_success:
   - mkdir dist
   - cp -r .next/ dist/.next
-  - cp package.json dist
+  - cp package.json ecosystem.config.js dist
 deploy:
   provider: pages
   skip_cleanup: true
