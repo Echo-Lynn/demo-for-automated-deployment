@@ -31,5 +31,5 @@ deploy:
     branch: master
   local_dir: dist
 after_deploy:
-  ssh root@$PROD_SERVER_IP 'pwd'
+  - pm2 deploy ecosystem.config.js prod setup --force
 
