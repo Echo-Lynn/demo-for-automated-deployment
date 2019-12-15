@@ -13,6 +13,7 @@ before_install:
   #将生产服务器地址加入到构建机的信任列表中，否则连接时会询问是否信任服务器
   - echo -e "Host $PROD_SERVER_IP\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 install:
+  - yarn global add pm2
   - yarn install
 script:
   - yarn build
