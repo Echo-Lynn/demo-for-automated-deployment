@@ -1,22 +1,25 @@
 sudo: false
 language: node_js
 node_js:
-- 12
+  - 12
 cache: yarn
 branches:
   only:
-  - master
+    - master
 before_install:
-  - openssl aes-256-cbc -K $encrypted_db8d9b5ea11f_key -iv $encrypted_db8d9b5ea11f_iv
-    -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+  - openssl aes-256-cbc -K $encrypted_db8d9b5ea11f_key -iv $encrypted_db8d9b5ea11f_iv -in id_rsa.enc -out ~/.ssh/id_rsa -d
+  #降低id_rsa文件的权限，否则ssh处于安全方面的原因会拒绝读取秘钥
+  - chmod 600 ~/.ssh/id_rsa
+  #将生产服务器地址加入到构建机的信任列表中，否则连接时会询问是否信任服务器
+  - echo -e "Host $PROD_SERVER_IP\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 install:
-- yarn install
+  - yarn install
 script:
-- yarn build
+  - yarn build
 after_success:
-- mkdir dist
-- cp -r .next/ dist/.next
-- cp package.json dist
+  - mkdir dist
+  - cp -r .next/ dist/.next
+  - cp package.json dist
 deploy:
   provider: pages
   skip_cleanup: true
@@ -28,4 +31,5 @@ deploy:
     branch: master
   local_dir: dist
 after_deploy:
-  ssh root@119.28.222.199 'pwd'
+  ssh root@$PROD_SERVER_IP 'pwd'
+
