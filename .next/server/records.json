@@ -17,10 +17,10 @@
     "byName": {
       "init-server.js": 0,
       "on-error-server.js": 1,
-      "static/-UE6WQrhezinv7BbuQ3Lh/pages/_app.js": 2,
-      "static/-UE6WQrhezinv7BbuQ3Lh/pages/_document.js": 3,
-      "static/-UE6WQrhezinv7BbuQ3Lh/pages/_error.js": 4,
-      "static/-UE6WQrhezinv7BbuQ3Lh/pages/index.js": 5
+      "static/Au5LRviFN3xQZIwGvs0ec/pages/_app.js": 2,
+      "static/Au5LRviFN3xQZIwGvs0ec/pages/_document.js": 3,
+      "static/Au5LRviFN3xQZIwGvs0ec/pages/_error.js": 4,
+      "static/Au5LRviFN3xQZIwGvs0ec/pages/index.js": 5
     },
     "bySource": {},
     "usedIds": [
