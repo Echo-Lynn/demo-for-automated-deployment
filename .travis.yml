@@ -1,0 +1,32 @@
+#.travis.yml
+sudo: false
+language: node_js
+node_js:
+  - 12
+cache: yarn
+#指定构建分支
+branches:
+  only:
+    - master
+#安装依赖
+install:
+  - yarn install
+script:
+  - yarn build
+#构建成功后，把部署所需的文件都拷贝到 dist 文件夹下
+after_success:
+  - mkdir dist
+  - cp -r .next/ dist/.next
+  - cp package.json dist
+#把 dist 文件推送到 github DEPLOY-PROD 分支下
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GH_TOKEN
+  keep_history: true
+  target_branch: DEPLOY-PROD
+  committer_from_gh: true
+  on:
+    branch: master
+  local_dir: dist
+
