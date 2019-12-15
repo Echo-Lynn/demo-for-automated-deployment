@@ -32,5 +32,5 @@ deploy:
     branch: master
   local_dir: dist
 after_deploy:
-  - pm2 deploy ecosystem.config.js prod setup --force
+  - pm2 deploy ecosystem.config.js prod update --force
 
